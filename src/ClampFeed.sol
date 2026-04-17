@@ -30,7 +30,7 @@ contract ClampFeed is IChainlinkFeed{
         require(_feed != address(0));
         feed = IChainlinkFeed(_feed);
         decimals = feed.decimals();
-        maxPrice = int256(10 ** feed.decimals());
+        maxPrice = int256(10 ** uint256(feed.decimals()));
     }
 
     function latestRoundData() external view returns(uint80 roundId, int256 price, uint256 startedAt, uint256 updatedAt, uint80 answeredInRound) {
@@ -44,6 +44,6 @@ contract ClampFeed is IChainlinkFeed{
     }
 
     function description() external view returns(string memory) {
-        return feed.description();
+        return string.concat("Clamped ", feed.description());
     }
 }
