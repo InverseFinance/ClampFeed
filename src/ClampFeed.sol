@@ -24,7 +24,7 @@ contract ClampFeed is IChainlinkFeed{
     
     uint8 public immutable decimals;
     int256 public immutable maxPrice;
-    IChainlinkFeed public feed;
+    IChainlinkFeed public immutable feed;
 
     constructor(address _feed) {
         require(_feed != address(0));
